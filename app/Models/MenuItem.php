@@ -7,17 +7,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Category extends Model
+class MenuItem extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'place_id',
-        'menu_id',
+        'category_id',
         'name',
+        'description',
+        'price',
+        'old_price',
+        'weight',
         'is_visible',
-        'background_img',
-        'position'
+        'is_available',
     ];
 
     public function place(): BelongsTo
@@ -25,8 +28,8 @@ class Category extends Model
         return $this->belongsTo(Place::class);
     }
 
-    public function menu(): BelongsTo
+    public function category(): BelongsTo
     {
-        return $this->belongsTo(Menu::class);
+        return $this->belongsTo(Category::class);
     }
 }
