@@ -16,6 +16,7 @@ class Category extends Model
         'name',
         'is_visible',
         'background_img',
+        'position'
     ];
 
     public function menu(): BelongsTo

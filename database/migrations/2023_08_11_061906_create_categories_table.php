@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->boolean('is_visible')->default(true);
             $table->string('background_img')->nullable();
+            $table->tinyInteger('position')->default(0);
             $table->timestamps();
         });
     }

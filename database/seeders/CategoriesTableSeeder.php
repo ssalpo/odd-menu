@@ -16,7 +16,8 @@ class CategoriesTableSeeder extends Seeder
         foreach (Menu::all() as $menu) {
             for ($i = 1; $i <= 10; $i++) {
                 $menu->categories()->create([
-                    'name' => 'Category ' . $i
+                    'name' => 'Category ' . $i,
+                    'position' => random_int(1, 10),
                 ]);
             }
         }
