@@ -5,26 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Place extends Model
+class Category extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'menu_id',
         'name',
-        'slug',
-        'user_id'
+        'is_visible',
+        'background_img',
     ];
 
-    public function user(): BelongsTo
+    public function menu(): BelongsTo
     {
-        return $this->belongsTo(User::class);
-    }
-
-    public function menus(): HasMany
-    {
-        return $this->hasMany(Menu::class);
+        return $this->belongsTo(Menu::class);
     }
 }

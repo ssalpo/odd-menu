@@ -8,23 +8,24 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Place extends Model
+class Menu extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
+        'place_id',
         'name',
-        'slug',
-        'user_id'
+        'is_visible',
+        'position',
     ];
 
-    public function user(): BelongsTo
+    public function place(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Place::class);
     }
 
-    public function menus(): HasMany
+    public function categories(): HasMany
     {
-        return $this->hasMany(Menu::class);
+        return $this->hasMany(Category::class);
     }
 }
