@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('place_id')->constrained();
             $table->foreignId('menu_id')->constrained();
-            $table->string('name');
             $table->boolean('is_visible')->default(true);
             $table->string('background_img')->nullable();
             $table->tinyInteger('position')->default(0);

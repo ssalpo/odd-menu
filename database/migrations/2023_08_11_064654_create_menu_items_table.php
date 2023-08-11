@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('place_id')->constrained();
             $table->foreignId('category_id')->nullable()->constrained();
-            $table->string('name');
-            $table->text('description')->nullable();
             $table->double('price', 2)->nullable();
             $table->double('old_price', 2)->nullable();
             $table->double('weight', 2)->nullable();

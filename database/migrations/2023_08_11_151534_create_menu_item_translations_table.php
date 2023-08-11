@@ -11,13 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('menu_item_translations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('place_id')->constrained();
-            $table->boolean('is_visible')->default(true);
-            $table->tinyInteger('position')->default(0);
+            $table->foreignId('menu_item_id')->constrained()->cascadeOnDelete();
+            $table->string('locale')->index();
+
+            $table->string('name');
+            $table->text('description')->nullable();
             $table->timestamps();
-            $table->softDeletes();
+
+            $table->unique(['menu_item_id', 'locale']);
         });
     }
 
@@ -26,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menus');
+        Schema::dropIfExists('menu_item_translations');
     }
 };
