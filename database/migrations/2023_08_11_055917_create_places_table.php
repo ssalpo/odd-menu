@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('places', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('slug');
             $table->foreignId('user_id')->constrained();
             $table->string('theme')->default('light');
@@ -24,10 +23,6 @@ return new class extends Migration
             $table->string('background_img')->nullable();
             $table->string('wifi_password')->nullable();
             $table->boolean('can_make_order')->default(true);
-            $table->string('country')->nullable();
-            $table->string('city')->nullable();
-            $table->string('address')->nullable();
-            $table->text('description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

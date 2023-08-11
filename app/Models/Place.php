@@ -2,18 +2,27 @@
 
 namespace App\Models;
 
+use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Place extends Model
+class Place extends Model implements TranslatableContract
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, Translatable;
+
+    public $translatedAttributes = [
+        'name',
+        'country',
+        'city',
+        'address',
+        'description',
+    ];
 
     protected $fillable = [
-        'name',
         'slug',
         'user_id',
         'theme',
@@ -24,10 +33,6 @@ class Place extends Model
         'background_img',
         'wifi_password',
         'can_make_order',
-        'country',
-        'city',
-        'address',
-        'description',
     ];
 
     public function user(): BelongsTo
